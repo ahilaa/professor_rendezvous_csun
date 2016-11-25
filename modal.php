@@ -25,7 +25,7 @@ function openleture(){
 } 
 
 function openstudent(){
-	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'studentins.php', 'Insert Student detail', 'width=550px,height=520px,center=1,resize=0,scrolling=1')
+	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'studentins.php', 'Student Signup', 'width=550px,height=650px,center=1,resize=0,scrolling=1')
 
 } 
 
@@ -43,6 +43,12 @@ function openexam(){
 	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'exam.php', 'Insert Marks detail', 'width=1000px,height=750px,center=1,resize=0,scrolling=1')
 
 }
+
+function openforgotpassword(){
+	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'forgotpassword.php', 'Forgot Password', 'width=500px,height=200px,center=1,resize=0,scrolling=1')
+
+}
   </script>
+
 
 <!-- /*************************************************/ -->

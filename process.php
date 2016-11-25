@@ -15,7 +15,7 @@ if(strlen($lecid)<=0){
 	$lecid= $_SESSION[lecid];
 }
 //Override default zone
-$_POST['zone']= "08:00";
+$_POST['zone']= "07:00";
 
 if($type == 'new')
 {
@@ -37,7 +37,7 @@ if($type == 'new')
     $headers = 'From: '.$_SESSION["stu_email"] . "\r\n" .
         'Reply-To:' .$_SESSION["lec_email"] . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
-	//echo "sdsds".$headers;
+	echo "sdsds".$headers;
 
 	$url="http://localhost/kashipara.com_student-managment-system-zip/student%20managment%20system/StudentInformationProject/fullcalendar/process.php?type=accept&eventid=".$lastid;
 	$message= "Hi ".$lecid."</br>";
@@ -46,7 +46,7 @@ if($type == 'new')
 
 	 echo mail($_SESSION["lec_email"], "APPONTMENT REQUEST", $message,$headers);
 
-	echo json_encode(array('status'=>'success','eventid'=>$lastid,'lecid'=>$_POST[type]));
+	echo json_encode(array('status'=>'success','eventid'=>$lastid,'lecid'=>$lecid));
 }
 
 if($type == 'accept')
@@ -98,7 +98,7 @@ if($type == 'remove')
 }
 
 if($type == 'fetch')
-{   //echo $_SESSION[userid];
+{   //echo $_SESSION['lecid'];
 	$events = array();
 
 	if($_SESSION["type"]=="admin")
@@ -107,15 +107,12 @@ if($type == 'fetch')
 	}
 	else if ($_SESSION["type"]=="student")
 	{
-	
-	//echo "GET".$_REQUEST[lecid];
-		if(isset($_SESSION[lecid])){
-			$query = mysqli_query($con, "SELECT * FROM calendar where lecid= '$_SESSION[lecid]' ");
-		}else{
-			$query = mysqli_query($con, "SELECT * FROM calendar,students_course_details,lectures where calendar.lecid=lectures.lecid and students_course_details.courseid=lectures.courseid and  studid= '$_SESSION[userid]' ");
-		}
+		$query = mysqli_query($con, "SELECT * FROM calendar where lecid= '$_SESSION[lecid]' ");
 	}
-//echo "sdsd".mysqli_num_rows($query);
+	/*if (!$query) {
+		printf("Error: %s\n", mysqli_error($con));
+		exit();
+	}*/
 	while($fetch = mysqli_fetch_array($query,MYSQLI_ASSOC))
 	{
 	$e = array();

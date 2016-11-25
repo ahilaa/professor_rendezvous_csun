@@ -3,7 +3,7 @@ session_start();
 ?>
 <section id="sidebar">
 <?php
-echo "userid".$_SESSION["userid"];
+//echo "userid".$_SESSION["userid"];
 if(isset($_SESSION["userid"]))
 {
 ?>
@@ -16,9 +16,9 @@ if(isset($_SESSION["userid"]))
 <ul>
 	<li><a href="course.php">Course</a></li>
     <!--<li><a href="subject.php">Subject</a></li>
-    <li><a href="lecturevieww.php">Lecture Profile</a></li>-->
+    <li><a href="lecturevieww.php">Lecture Profile</a></li>
     <li><a href="student.php">Student</a></li>
-   <!-- <li><a href="attendanceview.php">Attendance</a></li>
+    <li><a href="attendanceview.php">Attendance</a></li>
     <li><a href="examview.php">Examination</a></li>-->
     <li><a href="schedulerview.php">Scheduler</a></li>
 

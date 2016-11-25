@@ -5,7 +5,7 @@ if($_GET["view"] == "delete")
 {
 mysqli_query($con,"DELETE FROM contact WHERE contactid ='$_GET[slid]'");
 }
-$result = mysqli_query("SELECT * FROM contact");
+$result = mysqli_query($con,"SELECT * FROM contact");
 ?>
 <section id="page">
 <header id="pageheader" class="normalheader">

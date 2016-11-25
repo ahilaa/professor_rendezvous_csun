@@ -21,11 +21,11 @@ if(isset($_SESSION["userid"]))
 	}
 //echo "course".$_SESSION[cid];
 //echo "email".$_SESSION["email"];
-
+echo $_SESSION["userid"];
 	if($_SESSION["type"]==admin){
 		$result = mysqli_query($con,"SELECT * FROM course,lectures where  course.courseid=lectures.courseid LIMIT $_GET[first] , $_GET[last]");
 	}else{
-		$result = mysqli_query($con,"SELECT * FROM course,lectures where course.courseid=lectures.courseid and course.courseid='$_SESSION[cid]' LIMIT $_GET[first] , $_GET[last]");
+		$result = mysqli_query($con,"SELECT * FROM course,lectures,students_course_details  where course.courseid=lectures.courseid and students_course_details.courseid=course.courseid and students_course_details.studid='$_SESSION[userid]' LIMIT $_GET[first] , $_GET[last]");
 	}
 
 
@@ -90,12 +90,13 @@ alert('A wise decision!')
   $i =$_GET[first]+1;
   while($row = mysqli_fetch_array($result))
   {
-  $_SESSION[lecid]=$row['lecid'];
+ // $_SESSION[lecid]=$row['lecid'];
   $_SESSION[lec_email]=$row['email'];
   echo "<tr>";
   echo "<td align=center>&nbsp;" . $i . "</td>";
   echo "<td>&nbsp;" . $row['coursekey'] . "</td>";
   echo "<td>&nbsp;" . $row['coursename'] . "</td>";
+
   echo "<td>&nbsp;<a href=schedulerview.php?lecid=".$row['lecid'].">" . $row['lecname'] . "</a></td>";
       if($_SESSION["type"]=="admin")
 	{

@@ -23,13 +23,19 @@ if($_SESSION["type"]=="admin")
 	else
 	{
 ?>
+		<h2>Profile</h2>
+		<ul>
+			<li>Students ID : <?php echo $_SESSION["userid"] ; ?></li>
+		
+		</ul>
+		<h2>Menu</h2>
         <ul>
         <li><a href="course.php">Course</a></li>
-        <!--<li><a href="subject.php">Subject</a></li>
-        <li><a href="lecturevieww.php">Lecture Profile</a></li>-->
-        <li><a href="student.php">Student</a></li>
-        <!-- <li><a href="attendanceview.php">Attendance</a></li>
-        <li><a href="examview.php">Examination</a></li>-->
+        <!-- <li><a href="subject.php">Subject</a></li>
+        <li><a href="lecturevieww.php">Lecture Profile</a></li>
+        <li><a href="studentins.php">Student</a></li>
+         <li><a href="attendanceview.php">Attendance</a></li>
+        <li><a href="examview.php">Examination</a></li>  -->
         <li><a href="schedulerview.php">Scheduler</a></li>
         </ul>
 <?
