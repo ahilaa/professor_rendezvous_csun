@@ -3,7 +3,7 @@ session_start();
 include("validation.php");
 include("conection.php");
 include("modal.php");
-
+include('util.php');
 
 if(isset($_POST["uid"]))
 {
@@ -27,10 +27,11 @@ $result = mysqli_query($con,"SELECT * FROM studentdetails WHERE studid='$_POST[u
      'Reply-To:' .$stu_email . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
 
-	$message= "Hi ".$_POST[uid].", </br>";
-	$message .= " Your new password is ".$new_password."</br>";
+	$message= "<table><tr><td>Hi ".$_POST[uid].", </td></tr>";
+	$message .= "<tr><td>Your new password is <b>".$new_password."</b></td></tr></table>";
 
-	 mail($stu_email, "Password Reset", $message,$headers);
+	echo sendMail(" admin@adminmaster.com", $stu_email, "Password Reset", $message);
+	 //mail($stu_email, "Password Reset", $message,$headers);
 
 if(isset($stu_email))
 	{

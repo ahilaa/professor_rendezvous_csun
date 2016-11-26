@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('config.php');
+include('../util.php');
 
 $type = $_POST['type'];
 
@@ -23,7 +24,6 @@ if($type == 'new')
 	$title = $_POST['title'];
 	$insert = mysqli_query($con,"INSERT INTO calendar(`title`, `startdate`, `enddate`,`lecid`, `allDay`) VALUES('$title','$startdate','$startdate','$_SESSION[lecid]','false')");
 	$lastid = mysqli_insert_id($con);
-	//sendmail ($_SESSION["stu_email"], $_SESSION["lec_email"], "APPONTMENT REQUEST", "Blah blah" );
 
 	//$headers = "From: ".$fromemail . "\r\n" . 	"CC: ganesh.euraka@gmail.com";
 	// Always set content-type when sending HTML email
@@ -39,12 +39,14 @@ if($type == 'new')
         'X-Mailer: PHP/' . phpversion();
 	//echo "sdsds".$headers;
 
-	$url="http://localhost/kashipara.com_student-managment-system-zip/student%20managment%20system/StudentInformationProject/fullcalendar/process.php?type=accept&eventid=".$lastid;
-	$message= "Hi ".$lecid."</br>";
-	$message .= $_SESSION['stu_email']." has requested for appointment between ".$startdate." to ".$startdate."</br>";
-	$message .= "To confirm please <a href=".$url.">click here</a>";
-
-	 echo mail($_SESSION["lec_email"], "APPONTMENT REQUEST", $message,$headers);
+	$url="http://localhost:8888/fullcalendar/process.php?type=accept&eventid=".$lastid;
+	$message= "<table><tr><td>Hi ".$lecid."</td></tr>";
+	$message .= "<tr><td>".$_SESSION['stu_email']." has requested for appointment between ".$startdate." to ".$startdate."</td></tr>";
+	$message .= "<tr><td>To confirm please <a href=".$url.">click here</a></td></tr></table>";
+	
+	echo sendMail($_SESSION["stu_email"], $_SESSION["lec_email"], "APPONTMENT REQUEST", $message);
+	
+	// echo mail($_SESSION["lec_email"], "APPONTMENT REQUEST", $message,$headers);
 
 	echo json_encode(array('status'=>'success','eventid'=>$lastid,'lecid'=>$_POST[type]));
 }
@@ -134,10 +136,7 @@ if($type == 'fetch')
 	echo json_encode($events);
 }
 
-/*function sendmail ($fromemail, $toemail, $subject, $message ){
 
-	$headers = "From: ".$fromemail . "\r\n" . 	"CC: ganesh.euraka@gmail.com";
-	 mail($toemail,$subject,$message,$headers); }*/
 
 
 ?>
