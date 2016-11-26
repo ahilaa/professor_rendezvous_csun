@@ -20,16 +20,18 @@ include("conection.php"); ?>
       $rescourse = mysqli_query($con,"SELECT *  FROM lectures");
 
   ?>
-      <select name="select" id="select">
+      <select name="select" id="select" onchange="document.getElementById('selected_text').value=this.options[this.selectedIndex].text">
+        <option value="">Select Lecturer</option>
       <?php
       while($row1 = mysqli_fetch_array($rescourse))
   {
-echo "<option value='$row1[cal_feed_url]'>$row1[lecname]</option>";
+echo "<option value='$row1[cal_feed_url]'>$row1[lecid]</option>";
   }
   ?>
         </select>
       </p>
     <p>
+      <input type="hidden" name="selected_text" id="selected_text" value="" />
       <input type="submit" name="submitresult" id="submitresult" value="Submit">
       </p>
 </form>
@@ -60,7 +62,7 @@ if(isset($_POST[submitresult]))
          //echo "Count Items:". count($feedOuput);
          //echo "<br>";
          $i=0;
-         echo deleteLecSchedule($_SESSION[lecid],$con);
+         echo deleteLecSchedule($_POST[selected_text],$con);
          foreach($feedOuput as $items)
          {
                  $date_only=false;
@@ -127,11 +129,11 @@ if(isset($_POST[submitresult]))
         }
 
      function insertLecSchedule($title, $startdate, $enddate, $lecid,$con){
-     	$insert = mysqli_query($con,"INSERT INTO calendar(`title`, `startdate`, `enddate`,`lecid`, `allDay`, `status`, `lec_entry`) VALUES('$title','$startdate','$enddate','$_SESSION[lecid]','false','master','true')");
+     	$insert = mysqli_query($con,"INSERT INTO calendar(`title`, `startdate`, `enddate`,`lecid`, `allDay`, `status`, `lec_entry`) VALUES('$title','$startdate','$enddate','$_POST[selected_text]','false','master','true')");
      	echo "insert".$insert;
      	$lastid = mysqli_insert_id($con);
 
-     	echo json_encode(array('status'=>'success','eventid'=>$lastid,'lecid'=>$_SESSION[lecid]));
+     	echo json_encode(array('status'=>'success','eventid'=>$lastid,'lecid'=>$_POST[selected_text]));
      }
 
      function deleteLecSchedule($lecid,$con){

@@ -90,8 +90,8 @@ alert('A wise decision!')
   $i =$_GET[first]+1;
   while($row = mysqli_fetch_array($result))
   {
- // $_SESSION[lecid]=$row['lecid'];
-  $_SESSION[lec_email]=$row['email'];
+  $_SESSION[lecid]=$row['lecid'];
+  $_SESSION[lec_email]=$row['email'];echo "lec_email]". $_SESSION[lec_email];
   echo "<tr>";
   echo "<td align=center>&nbsp;" . $i . "</td>";
   echo "<td>&nbsp;" . $row['coursekey'] . "</td>";

@@ -1,10 +1,4 @@
 <?php
-//ini_set("SMTP","aspmx.l.google.com");
-if( ! ini_get('date.timezone') )
-{
-    date_default_timezone_set('GMT');
-}
-error_reporting(E_ERROR | E_PARSE);
 session_start();
 include("validation.php");
 include("conection.php");

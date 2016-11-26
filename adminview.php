@@ -19,7 +19,7 @@ if(isset($_SESSION["userid"]))
 		$_GET[first] =0;
 	$_GET[last] = 10;
 	}
-$result = mysqli_query($con,"SELECT * FROM administrator LIMIT $_GET[first] , $_GET[last]");
+$result = mysqli_query("SELECT * FROM administrator LIMIT $_GET[first] , $_GET[last]");
 
 ?>
 <section id="page">

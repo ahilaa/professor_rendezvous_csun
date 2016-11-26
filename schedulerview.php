@@ -6,9 +6,12 @@ include("modal.php");
 	         if($_GET["lecid"]!=""){
              	$_SESSION["lecid"]=$_GET["lecid"];
              }
-             echo "----->".$_SESSION["lecid"];
-            // echo "Student email".$_SESSION["stu_email"];
-             //echo "Lecturer email".$_SESSION["lec_email"];
+			 /*if($_GET["lemail"]!=""){
+				$_SESSION["lec_email"]=$_GET["lemail"];
+			  }*/
+             //echo "----->".$_SESSION["lecid"];
+             //echo "Student email".$_SESSION["stu_email"];
+            //echo "Lecturer email".$_SESSION["lec_email"];echo "lec_email]". $_GET[lec_email];
 
 ?>
 
@@ -23,6 +26,10 @@ include("modal.php");
 
 	$(document).ready(function() {
 		//$('.blink_me').fadeOut(200).fadeIn(200, blink);
+
+                  //  alert(parag.className);
+
+				//alert(document.getElementsByClassName("fc-month-button").classList.remove("fc-state-active"));
 				$('.fc-month-button').removeClass('fc-state-active');
         		$('.fc-agendaWeek-button').addClass('fc-state-active');
 		var zone = "05:30";  //Change this to your timezone

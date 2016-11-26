@@ -1,9 +1,4 @@
-<?php
-if( ! ini_get('date.timezone') )
-{
-    date_default_timezone_set('GMT');
-}
-?>
+
 <!doctype html>
 
 <html lang="en-US">
@@ -49,10 +44,12 @@ function Openeditcourse(a)
 <!--<a href="index.php">Philo Milestone</a>-->
 </h1>
 <ul>
-<?php	
-if($_SESSION["type"]=="admin")
-	{
+
+<?php
+  	if($_SESSION["type"]=="admin")
+  	{
 ?>
+<!--<li class="active"><a href="index.php"><span>Home</span></a></li>-->
 <li><a href="viewresult.php"><span>STUDENTS</span></a></li>
 <li><a href="viewlecturer.php"><span>Lecturer</span></a></li>
 <li><a href="admin.php"><span>Home</span></a></li>
@@ -65,10 +62,10 @@ if($_SESSION["type"]=="admin")
 ?>
 <li><a href="admin.php"><span>Home</span></a></li>
 <li><a href="contact.php"><span>cONTACT-US</span></a></li>
-
 <?php
   	}
 ?>
+
 </ul>
 </nav>
 </section>
