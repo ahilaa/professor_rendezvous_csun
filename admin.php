@@ -5,7 +5,7 @@ include("header.php");
 include("conection.php");
 
 //echo $_SESSION["uid"];
-if(isset($_SESSION["userid"]))
+/*if(isset($_SESSION["userid"]))
 {
 	if($_SESSION["type"]=="admin")
 	{
@@ -19,7 +19,7 @@ if(isset($_SESSION["userid"]))
 	{
      header("Location: professorscheduler.php");
 	}
-}
+}*/
 
 
 
@@ -39,7 +39,7 @@ $result = mysqli_query($con,"SELECT * FROM administrator WHERE adminid='$_POST[u
     {
         $_SESSION["userid"] = $_POST["uid"];
         $_SESSION["type"]="admin";
-        header("Location: dashboard.php");
+        //header("Location: dashboard.php");
     }
     else
     {
@@ -57,7 +57,7 @@ $result = mysqli_query($con,"SELECT * FROM administrator WHERE adminid='$_POST[u
         	{
         	    $_SESSION["userid"] = $_POST["uid"];
         	    $_SESSION["type"] ="student";
-            	header("Location: schedulerview.php");
+            	//header("Location: schedulerview.php");
         	}
         else
         	{
