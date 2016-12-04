@@ -1,11 +1,13 @@
 <?php
+session_start();
 include("header.php");
 include("conection.php");
+include("modal.php");
 if($_GET["view"] == "delete")
 {
 mysqli_query($con,"DELETE FROM contact WHERE contactid ='$_GET[slid]'");
 }
-$result = mysqli_query("SELECT * FROM contact");
+$result = mysqli_query($con,"SELECT * FROM contact");
 ?>
 <section id="page">
 <header id="pageheader" class="normalheader">
@@ -57,11 +59,12 @@ $result = mysqli_query("SELECT * FROM contact");
 </article>
 
 
-</section>
-<?php 
-include("adminmenu.php");
-include("footer.php"); ?>
+
 <p>&nbsp;</p>
 <form name="form1" method="post" action="">
   <input type="submit" name="button" id="button" value="Delete">
 </form>
+</section>
+<?php 
+include("adminmenu.php");
+include("footer.php"); ?>

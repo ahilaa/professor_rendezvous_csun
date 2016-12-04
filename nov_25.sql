@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2016 at 07:58 PM
+-- Generation Time: Dec 04, 2016 at 06:54 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.10RC1
 
@@ -30,15 +30,19 @@ CREATE TABLE IF NOT EXISTS `administrator` (
   `id` int(11) NOT NULL,
   `adminid` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `address` text,
+  `contactno` varchar(255) DEFAULT NULL,
+  `adminname` varchar(255) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `administrator`
 --
 
-INSERT INTO `administrator` (`id`, `adminid`, `password`, `created_date`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2016-09-21 10:29:46');
+INSERT INTO `administrator` (`id`, `adminid`, `password`, `address`, `contactno`, `adminname`, `created_date`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'sds', '34343', 'dfdfdfd', '2016-09-21 10:29:46'),
+(3, 'sds', '21232f297a57a5a743894a0e4a801fc3', 'sds', '23232', 'sdsd', '2016-12-03 22:56:51');
 
 -- --------------------------------------------------------
 
@@ -81,21 +85,14 @@ CREATE TABLE IF NOT EXISTS `calendar` (
   `status` varchar(50) NOT NULL DEFAULT 'pending',
   `lec_entry` varchar(255) NOT NULL DEFAULT 'false',
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `calendar`
 --
 
 INSERT INTO `calendar` (`id`, `title`, `startdate`, `enddate`, `lecid`, `allDay`, `status`, `lec_entry`, `created_date`) VALUES
-(63, 'Ahilaa', '2016-10-05T15:00:00', '2016-10-05T16:00:00', 'Robertl', 'false', 'pending', 'false', '2016-10-04 11:47:35'),
-(77, 'New Event', '2016-10-06T20:00:00', '2016-10-06T21:00:00', 'Robertl', 'false', 'accepted', 'false', '2016-10-04 18:17:25'),
-(78, 'New Event', '2016-10-07T13:30:00-07:00', '2016-10-07T13:30:00-07:00', 'Robertl', 'false', 'accepted', 'false', '2016-10-06 14:52:23'),
-(79, 'New Event', '2016-11-23T00:00:00-07:00', '2016-11-23T00:00:00-07:00', 'Robertl', 'false', 'pending', 'false', '2016-11-06 12:53:24'),
-(80, 'New Event', '2016-11-23T00:00:00-07:00', '2016-11-23T00:00:00-07:00', '', 'false', 'pending', 'false', '2016-11-15 10:46:22'),
-(81, 'New Event', '2016-12-02T00:00:00-07:00', '2016-12-02T00:00:00-07:00', '', 'false', 'pending', 'false', '2016-11-18 12:09:29'),
-(82, 'Clarification Meeting', '2016-12-07T00:00:00-07:00', '2016-12-07T00:00:00-07:00', '', 'false', 'pending', 'false', '2016-11-22 15:35:07'),
-(83, 'New Event', '2016-11-23T00:00:00-07:00', '2016-11-23T00:00:00-07:00', '', 'false', 'pending', 'false', '2016-11-22 15:37:05');
+(91, 'Meeting GG-Preethi', '2016-12-08T11:00:00-08:00', '2016-12-08T11:00:00-08:00', 'Ganesh', 'false', 'rejected', 'false', '2016-12-03 21:22:41');
 
 -- --------------------------------------------------------
 
@@ -111,7 +108,16 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `subject` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `name`, `emailid`, `contactno`, `subject`, `message`, `created_date`) VALUES
+(1, 'GG', 'ganesh.euraka@gmail.com', '8183196443', 'sdss', 'sdsds', '2016-12-03 21:52:32'),
+(2, 'GG', 'ganesh.euraka@gmail.com', '8183196443', 'sdss', 'sdsds', '2016-12-03 21:53:46'),
+(3, 'GG', 'ganesh.euraka@gmail.com', '8183196443', 'sdss', 'sdsds', '2016-12-03 21:54:18');
 
 -- --------------------------------------------------------
 
@@ -126,16 +132,16 @@ CREATE TABLE IF NOT EXISTS `course` (
   `comment` text NOT NULL,
   `coursekey` varchar(255) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `course`
 --
 
 INSERT INTO `course` (`id`, `courseid`, `coursename`, `comment`, `coursekey`, `created_date`) VALUES
-(1, 'COMP589', 'SOFTWARE METRICS', '', 'COMP589', '2016-09-21 10:39:28'),
 (2, 'COMP583', 'SOFTWARE ENGG MGMT', 'Software engineering managamnet', 'COMP583', '2016-09-22 15:01:21'),
-(3, 'COMP582', 'SOFTWARE REQ SPEC', 'Software requirement specification', 'COMP582', '2016-09-22 15:01:21');
+(3, 'COMP582', 'SOFTWARE REQ SPEC', 'Software requirement specification', 'COMP582', '2016-09-22 15:01:21'),
+(9, 'COMP520', 'COMP520', 'sdsds', 'COMP520', '2016-12-03 23:23:34');
 
 -- --------------------------------------------------------
 
@@ -182,8 +188,9 @@ CREATE TABLE IF NOT EXISTS `lectures` (
 --
 
 INSERT INTO `lectures` (`id`, `lecid`, `password`, `lecname`, `email`, `courseid`, `cal_feed_url`, `gender`, `address`, `contactno`, `created_date`) VALUES
-(1, 'Robertl', '5f4dcc3b5aa765d61d8327deb882cf99', 'Robert Lingard', 'csungroupprojectsem1@gmail.com', 'COMP589', 'https://www.googleapis.com/calendar/v3/calendars/1d29s7r26j3dek6se89gfl3klc%40group.calendar.google.com/events?key=AIzaSyAo3XpqJn3o8koEeQGom0mVAlsGmdd_tyU&maxResults=100&futureevents=true&singleevents=true', '', '', '', '2016-09-21 10:34:52'),
-(3, 'wang', '5f4dcc3b5aa765d61d8327deb882cf99', 'Wang', '', 'COMP583', 'https://www.googleapis.com/calendar/v3/calendars/1d29s7r26j3dek6se89gfl3klc%40group.calendar.google.com/events?key=AIzaSyAo3XpqJn3o8koEeQGom0mVAlsGmdd_tyU&maxResults=100&futureevents=true&singleevents=true', 'Male', 'Northridge', '2323223232', '2016-09-21 23:05:45');
+(0, 'TEST', 'd41d8cd98f00b204e9800998ecf8427e', 'test', 'test@test.com', 'COMP520', 'sds', 'Male', 'sds', '23232323', '2016-12-03 23:24:32'),
+(1, 'Ganesh', '5f4dcc3b5aa765d61d8327deb882cf99', 'Ganesh Gnanasekaran', 'csungroupprojectsem1@gmail.com', 'COMP900', 'https://www.googleapis.com/calendar/v3/calendars/o0ueni6j6sotmh0gebosk1hp2c@group.calendar.google.com/events?key=AIzaSyAo3XpqJn3o8koEeQGom0mVAlsGmdd_tyU&maxResults=100&futureevents=true&singleevents=true', 'Male', 'sds', '34343434343', '2016-09-21 10:34:52'),
+(3, 'wang', '5f4dcc3b5aa765d61d8327deb882cf99', 'Wang', 'csungroupprojectsem1@gmail.com', 'COMP583', 'https://www.googleapis.com/calendar/v3/calendars/quo7k3vmjhebkf7g8b5kfkpce4@group.calendar.google.com/events?key=AIzaSyAo3XpqJn3o8koEeQGom0mVAlsGmdd_tyU&maxResults=100&futureevents=true&singleevents=true', 'Male', 'Northridge', '2323223232', '2016-09-21 23:05:45');
 
 -- --------------------------------------------------------
 
@@ -206,17 +213,23 @@ CREATE TABLE IF NOT EXISTS `studentdetails` (
   `semester` int(11) NOT NULL,
   `gender` varchar(255) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `studentdetails`
 --
 
 INSERT INTO `studentdetails` (`id`, `studid`, `studfname`, `studlname`, `email`, `password`, `dob`, `fathername`, `address`, `contactno`, `courseid`, `semester`, `gender`, `created_date`) VALUES
-(1, 'stu100', 'Ahilaa', 'Kamuthurai', 'akilakamuthurai@gmail.com', 'e0f0ef3b5e3bf619da70a709d74cf314', '1986-01-17', 'Kamuthurai', 'Studio city', '8183196443', 'COMP589', 1, 'Female', '2016-09-21 10:48:44'),
-(6, 'Akila', 'Akila', 'Kamuthurai', 'akilakamuthurai@gmail.com', 'b4af804009cb036a4ccdc33431ef9ac9', '1990-01-17', 'Kamuthurai', 'address', '8183196443', 'COMP589', 1, 'Female', '2016-11-22 15:17:49'),
-(7, 'ggnanase', 'Ganesh', 'Gnanasekaran', 'akilakamuthurai@gmail.com', '3bc2ae1286c9a84692baf952ee68469f', '1982-08-18', 'Gnanasekaran', 'studio city', '8183196443', 'COMP589', 1, 'Male', '2016-11-22 18:13:32'),
-(8, 'ags', 'sanjith', 'Ganesh', 'ganesh.euraka@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', '1997-11-14', 'Ganesh', 'studio city', '8183196443', '', 1, 'Male', '2016-11-24 09:40:23');
+(1, 'stu100', 'Ahilaa', 'Kamuthurai', 'akilakamuthurai@gmail.com', 'e18a08eb96801f1702b1ca83ff3892af', '1986-01-17', 'Kamuthurai', 'Studio city', '8183196443', 'COMP589', 1, 'Female', '2016-09-21 10:48:44'),
+(6, 'Akila', 'Akila', 'Kamuthurai', 'akilakamuthurai@gmail.com', 'e18a08eb96801f1702b1ca83ff3892af', '1990-01-17', 'Kamuthurai', 'address', '8183196443', 'COMP589', 1, 'Female', '2016-11-22 15:17:49'),
+(7, 'ggnanase', 'Ganesh', 'Gnanasekaran', 'akilakamuthurai@gmail.com', 'e18a08eb96801f1702b1ca83ff3892af', '1982-08-18', 'Gnanasekaran', 'studio city', '8183196443', 'COMP589', 1, 'Male', '2016-11-22 18:13:32'),
+(8, 'ags', 'sanjith', 'Ganesh', 'ganesh.euraka@gmail.com', '15062c45d536fbfe77d3ab3b4d660d79', '1997-11-14', 'Ganesh', 'studio city', '8183196443', '', 1, 'Male', '2016-11-24 09:40:23'),
+(9, 'Senthil', 'Sen', 'thil', 'akilakamuthurai@gmail.com', 'e18a08eb96801f1702b1ca83ff3892af', '1984-04-16', 'Kamuthurai', 'Chennai', '9952946683', '', 1, 'Male', '2016-12-02 21:34:35'),
+(10, 'Sanjith', 'Sanjith', 'Ganesh', 'akilakamuthurai@gmail.com', 'a377353e9b09450f27f3b214503b4871', '1998-04-15', 'Ganesh', '4100 Arch Drive Apt 31', '9987677788', '', 1, 'Male', '2016-12-03 12:11:31'),
+(11, 'anitha', 'anitha', 'sridhar', 'akilakamuthurai@gmail.com', 'a377353e9b09450f27f3b214503b4871', '0000-00-00', 'mayoor', 'arch', '999999999', '', 1, 'Female', '2016-12-03 13:55:34'),
+(12, 'Preethi', 'Preethi', 'Vallur', 'akilakamuthurai@gmail.com', 'a377353e9b09450f27f3b214503b4871', '0000-00-00', 'Vallur', 'arch dr', '898977788', '', 1, 'Female', '2016-12-03 21:21:49'),
+(13, 'sdsdsds', 'sds', 'sdsd', 'adsada@sdsd.com', '962012d09b8170d912f0669f6d7d9d07', '1997-11-14', 'Ganesh', '4100 Arch Drive Apt 31', '8183196443', '', 1, 'Male', '2016-12-03 23:03:18'),
+(14, 'Kamuthurai', 'kam', 'thurai', 'akilakamuthurai@gmail.com', 'a377353e9b09450f27f3b214503b4871', '1984-12-13', 'Ganesh', 'asdsd', '8999999', '', 1, 'Male', '2016-12-03 23:26:28');
 
 -- --------------------------------------------------------
 
@@ -229,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `students_course_details` (
   `studid` varchar(255) NOT NULL,
   `courseid` varchar(255) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students_course_details`
@@ -237,7 +250,16 @@ CREATE TABLE IF NOT EXISTS `students_course_details` (
 
 INSERT INTO `students_course_details` (`id`, `studid`, `courseid`, `created_date`) VALUES
 (1, 'ags', 'COMP589', '2016-11-24 09:40:23'),
-(2, 'ags', 'COMP583', '2016-11-24 09:40:23');
+(2, 'ags', 'COMP583', '2016-11-24 09:40:23'),
+(3, 'Senthil', 'COMP583', '2016-12-02 21:34:35'),
+(4, 'Senthil', 'COMP582', '2016-12-02 21:34:35'),
+(5, 'Sanjith', 'COMP589', '2016-12-03 12:11:31'),
+(6, 'Sanjith', 'COMP583', '2016-12-03 12:11:31'),
+(7, 'anitha', 'COMP583', '2016-12-03 13:55:34'),
+(8, 'Preethi', 'COMP589', '2016-12-03 21:21:49'),
+(9, 'sdsdsds', 'COMP589', '2016-12-03 23:03:18'),
+(10, 'sdsdsds', 'COMP583', '2016-12-03 23:03:18'),
+(11, 'Kamuthurai', 'COMP520', '2016-12-03 23:26:28');
 
 -- --------------------------------------------------------
 
@@ -333,7 +355,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `administrator`
 --
 ALTER TABLE `administrator`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `attendance`
 --
@@ -343,17 +365,17 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=92;
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `examination`
 --
@@ -363,12 +385,12 @@ ALTER TABLE `examination`
 -- AUTO_INCREMENT for table `studentdetails`
 --
 ALTER TABLE `studentdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `students_course_details`
 --
 ALTER TABLE `students_course_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `subject`
 --

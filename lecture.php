@@ -10,9 +10,9 @@ $totid = mysqli_num_rows($totcourse)+1;
 if(isset($_POST[button]))
 {
 	$pwde = md5($_POST[password]);
-$sql="INSERT INTO lectures (lecid, password, courseid, cal_feed_url, lecname, gender, address ,contactno)
+$sql="INSERT INTO lectures (lecid, password, courseid, cal_feed_url, email, lecname, gender, address ,contactno)
 VALUES
-('$_POST[lecid]','$pwde', '$_POST[course]', '$_POST[feedurl]', '$_POST[lecname]', '$_POST[gender]','$_POST[address]','$_POST[contactno]')";
+('$_POST[lecid]','$pwde', '$_POST[course]', '$_POST[feedurl]',  '$_POST[email]', '$_POST[lecname]', '$_POST[gender]','$_POST[address]','$_POST[contactno]')";
 
 if (!mysqli_query($con,$sql))
   {
@@ -27,7 +27,7 @@ if (!mysqli_query($con,$sql))
 if(isset($_POST["button2"]))
 {
 	$pwde = md5($_POST[password]);
-mysqli_query($con,"UPDATE lectures SET lecname='$_POST[lecname]',     gender='$_POST[gender]', cal_feed_url='$_POST[feedurl]' ,  address='$_POST[address]', courseid='$_POST[coursekey]' 	contactno='$_POST[contactno]' WHERE lecid = '$_POST[lecid]'");
+mysqli_query($con,"UPDATE lectures SET lecname='$_POST[lecname]',     gender='$_POST[gender]', cal_feed_url='$_POST[feedurl]' ,  address='$_POST[address]', courseid='$_POST[coursekey]',	contactno='$_POST[contactno]', email='$_POST[email]' WHERE lecid = '$_POST[lecid]'");
 echo "Record updated successfully...";
 }
 
@@ -37,7 +37,7 @@ if($_GET["view"] == "lectures")
 $result = mysqli_query($con,"SELECT * FROM lectures where lecid='$_GET[slid]'");
  while($row1 = mysqli_fetch_array($result))
   {
-	$totid = $row1["lecid"];
+	$lec_id = $row1["lecid"];
 	$lecname = $row1["lecname"];
 	$password = $row1["password"];
 	$courseid = $row1["courseid"];
@@ -45,6 +45,7 @@ $result = mysqli_query($con,"SELECT * FROM lectures where lecid='$_GET[slid]'");
 	$gender = $row1["gender"];
 	$address = $row1["address"];
 	$contactno = $row1["contactno"];
+	$lecemail = $row1["email"];
 	}
 }
 else
@@ -56,13 +57,13 @@ $result = mysqli_query($con,"SELECT * FROM lectures");
 <form name="form1" method="post" action="" id="formID">
   <p>&nbsp;</p>
   <p>
-    <label for="lecid">Lecturer ID&nbsp;&nbsp;&nbsp;</label>
-    <input type="text" name="lecid" id="lecid" class="validate[required] text-input" readonly value="<?php echo $totid; ?>">
+    <label for="lecid">Lecturer User ID&nbsp;&nbsp;&nbsp;</label>
+    <input type="text" name="lecid" id="lecid" class="validate[required] text-input"  value="<?php echo $lec_id; ?>">
   </p>
   <p>
   <label for="lecname">Lecturer Name</label>
     <input type="text" name="lecname" id="lecname" class="validate[required,custom[onlyLetterSp]] text-input" value="<?php echo $lecname; ?>">
-  </p>
+  <!--</p>
   <p>
     <label for="password">Password</label>
     <input type="password" name="password" id="password" class="validate[required] text-input">
@@ -70,7 +71,11 @@ $result = mysqli_query($con,"SELECT * FROM lectures");
   <p>
     <label for="textfield4">Confirm Password</label>
     <input type="password" name="textfield4" id="textfield4" class="validate[required,equals[password]] text-input">
-  </p>
+  </p>-->
+    <p>
+      <label for="textfield3">Email</label>
+      <input type="text" name="email" id="textemail" size="50" class="validate[required] text-input" value="<?php echo $lecemail; ?>">
+    </p>
   <p>
     <label for="textfield2">Course </label>
     <select name="course" value="<?php echo $courseid; ?>">

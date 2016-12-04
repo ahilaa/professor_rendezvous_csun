@@ -14,6 +14,10 @@ function opennewsletter(){
 
 } //End "opennewsletter" function
 
+function Openeditcourse(courseid){ alert('sds');
+	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'courseinsert.php?slid=courseid&view=course', 'Insert Course Details', 'width=550px,height=350px,center=1,resize=0,scrolling=1')
+
+}
 function opensubject(){
 	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'subjectxx.php', 'Insert Subject', 'width=550px,height=450px,center=1,resize=0,scrolling=1')
 
@@ -25,7 +29,7 @@ function openleture(){
 } 
 
 function openstudent(){
-	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'studentins.php', 'Student Signup', 'width=550px,height=650px,center=1,resize=0,scrolling=1')
+	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'studentins.php', 'Student Signup', 'width=550px,height=670px,center=1,resize=0,scrolling=1')
 
 } 
 

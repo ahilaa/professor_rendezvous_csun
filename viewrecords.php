@@ -413,11 +413,11 @@ $contactno =   $row6["contactno"];
     <th width="262" scope="col"><div align="left"> &nbsp; <?php echo  $adminid; ?></div></th>
     </tr>
   
-   <tr>
+  <!-- <tr>
     <th height="43" scope="col">Password</th>
     <th scope="col"><div align="left">&nbsp; <?php echo  $password; ?> </div></th>
     </tr>
-  <tr>
+  <tr>-->
     <th height="56" scope="col">Admin Name</th>
     <th scope="col"><div align="left">&nbsp; <?php echo  $adminname; ?> </div></th>
     </tr>

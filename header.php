@@ -49,11 +49,11 @@ function Openeditcourse(a)
   	if($_SESSION["type"]=="admin")
   	{
 ?>
-<!--<li class="active"><a href="index.php"><span>Home</span></a></li>-->
-<li><a href="viewresult.php"><span>STUDENTS</span></a></li>
-<li><a href="viewlecturer.php"><span>Lecturer</span></a></li>
+<!--<li class="active"><a href="index.php"><span>Home</span></a></li
+<li><a href="viewresult.php"><span>STUDENTS</span></a></li>>-->
+<li><a href="viewlecturer.php"><span>Calendar Feed</span></a></li>
 <li><a href="admin.php"><span>Home</span></a></li>
-<li><a href="contact.php"><span>cONTACT-US</span></a></li>
+<li><a href="contact.php"><span>CONTACT-US</span></a></li>
 
 <?php
   	}
@@ -61,7 +61,7 @@ function Openeditcourse(a)
   	{
 ?>
 <li><a href="admin.php"><span>Home</span></a></li>
-<li><a href="contact.php"><span>cONTACT-US</span></a></li>
+<li><a href="contact.php"><span>CONTACT-US</span></a></li>
 <?php
   	}
 ?>

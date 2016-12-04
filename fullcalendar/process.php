@@ -39,10 +39,11 @@ if($type == 'new')
         'X-Mailer: PHP/' . phpversion();
 	//echo "sdsds".$headers;
 
-	$url="http://localhost:8888/fullcalendar/process.php?type=accept&eventid=".$lastid;
+	$url="http://localhost/professor_rendezvous_csun/fullcalendar/process.php?type=accept&eventid=".$lastid;
+	$rejecturl="http://localhost/professor_rendezvous_csun/fullcalendar/process.php?type=reject&eventid=".$lastid;
 	$message= "<table><tr><td>Hi ".$lecid."</td></tr>";
 	$message .= "<tr><td>".$_SESSION['stu_email']." has requested for appointment between ".$startdate." to ".$startdate."</td></tr>";
-	$message .= "<tr><td>To confirm please <a href=".$url.">click here</a></td></tr></table>";
+	$message .= "<tr><td>To confirm please <a href=".$url.">click here</a>  or <a href=".$rejecturl.">Reject </a></td></tr></table>";
 	
 	echo sendMail($_SESSION["stu_email"], $_SESSION["lec_email"], "APPONTMENT REQUEST", $message);
 	
@@ -51,6 +52,19 @@ if($type == 'new')
 	echo json_encode(array('status'=>'success','eventid'=>$lastid,'lecid'=>$_POST[type]));
 }
 
+if($type == 'reject')
+{
+	$eventid = $_GET['eventid'];
+
+	$update = mysqli_query($con,"UPDATE calendar SET status='rejected' where id='$eventid'");
+	if($update){
+		echo json_encode(array('status'=>'success'));
+		echo "Rejected";
+	}else{
+		echo json_encode(array('status'=>'failed'));
+		echo "Declined";
+	}
+}
 if($type == 'accept')
 {
 	$eventid = $_GET['eventid'];
@@ -64,7 +78,6 @@ if($type == 'accept')
 		echo "Declined";
 	}
 }
-
 if($type == 'changetitle')
 {
 	$eventid = $_POST['eventid'];
@@ -105,16 +118,16 @@ if($type == 'fetch')
 
 	if($_SESSION["type"]=="admin")
 	{
-		$query = mysqli_query($con, "SELECT * FROM calendar ");
+		$query = mysqli_query($con, "SELECT * FROM calendar where status !='rejected' ");
 	}
 	else if ($_SESSION["type"]=="student")
 	{
 	
 	//echo "GET".$_REQUEST[lecid];
 		if(isset($_SESSION[lecid])){
-			$query = mysqli_query($con, "SELECT * FROM calendar where lecid= '$_SESSION[lecid]' ");
+			$query = mysqli_query($con, "SELECT * FROM calendar where lecid= '$_SESSION[lecid]' and status !='rejected' ");
 		}else{
-			$query = mysqli_query($con, "SELECT * FROM calendar,students_course_details,lectures where calendar.lecid=lectures.lecid and students_course_details.courseid=lectures.courseid and  studid= '$_SESSION[userid]' ");
+			$query = mysqli_query($con, "SELECT * FROM calendar,students_course_details,lectures where calendar.lecid=lectures.lecid and students_course_details.courseid=lectures.courseid and  studid= '$_SESSION[userid]' status !='rejected' ");
 		}
 	}
 //echo "sdsd".mysqli_num_rows($query);

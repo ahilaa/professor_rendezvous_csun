@@ -8,9 +8,9 @@ $sql="INSERT INTO administrator (adminid, adminname, password, address, contactn
 VALUES
 ('$_POST[adminid]','$_POST[adminname]','$pwde','$_POST[address]','$_POST[contactno]')";
 
-if (!mysqli_query($sql,$con))
+if (!mysqli_query($con,$sql))
   {
-  die('Error: ' . mysqli_error());
+  die('Error: ' . mysqli_error($con));
   }
   else
   {
@@ -36,7 +36,7 @@ if($_GET[view] == "administrator")
 $result = mysqli_query($con,"SELECT * FROM administrator where adminid='$_GET[slid]'");
  while($row1 = mysqli_fetch_array($result))
   {
-	$adminid = $row1["adminid"];
+	$admin_id = $row1["adminid"];
 	$password = $row1["password"];
 	$adminname = $row1["adminname"];
 	$address = $row1["address"];
@@ -50,7 +50,7 @@ $contact = 	$row1["contactno"];
 <form name="form1" method="post" action="" id="formID">
   <p>
     <label for="adminid">Admin ID</label>
-    <input type="text" name="adminid" id="adminid"  class="validate[required] text-input" value="<?php echo $adminid; ?>">
+    <input type="text" name="adminid" id="adminid"  class="validate[required] text-input" value="<?php echo $admin_id; ?>">
 </p>
   <p>
     <label for="adminname">Admin Name</label>

@@ -102,8 +102,12 @@ if($showformflag){
     </p>
     <p>
       <label for="textfield3">Password</label>
-      <input type="text" name="studpass" id="textpass" class="validate[required] text-input" value="<?php echo $studpass; ?>">
+      <input type="password" name="studpass" id="textpass" class="validate[required] text-input" value="<?php echo $studpass; ?>">
     </p>
+  <p>
+    <label for="cpassword">Confirm Password</label>
+    <input type="password" name="cpassword" id="cpassword" class="validate[required,equals[textpass]] text-input">
+</p>
     <p>
       <label for="textfield3">Email</label>
       <input type="text" name="studemail" id="textemail" size="50" class="validate[required] text-input" value="<?php echo $studemail; ?>">

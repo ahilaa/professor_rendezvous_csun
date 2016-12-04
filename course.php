@@ -21,7 +21,7 @@ if(isset($_SESSION["userid"]))
 	}
 //echo "course".$_SESSION[cid];
 //echo "email".$_SESSION["email"];
-echo $_SESSION["userid"];
+//echo $_SESSION["userid"];
 	if($_SESSION["type"]==admin){
 		$result = mysqli_query($con,"SELECT * FROM course,lectures where  course.courseid=lectures.courseid LIMIT $_GET[first] , $_GET[last]");
 	}else{
@@ -91,7 +91,7 @@ alert('A wise decision!')
   while($row = mysqli_fetch_array($result))
   {
   $_SESSION[lecid]=$row['lecid'];
-  $_SESSION[lec_email]=$row['email'];echo "lec_email]". $_SESSION[lec_email];
+  $_SESSION[lec_email]=$row['email'];//echo "lec_email]". $_SESSION[lec_email];
   echo "<tr>";
   echo "<td align=center>&nbsp;" . $i . "</td>";
   echo "<td>&nbsp;" . $row['coursekey'] . "</td>";
@@ -101,9 +101,10 @@ alert('A wise decision!')
       if($_SESSION["type"]=="admin")
 	{
    echo "<td>&nbsp;<a href='viewrecords.php?slid=$row[courseid]&view=course'><img src='images/view.png' width='32' height='32' /></a>";
- echo "<img src='images/edit.png' width='32' height='32'  onclick='Openeditcourse(". $row[courseid].")'/>";
+ echo "<a href='courseinsert.php?slid=$row[courseid]&view=course'><img src='images/edit.png' width='32' height='32'  onclick='Openeditcourse(". $row[courseid].")'/></a>
+ <a href='course.php?slid=$row[courseid]&view=delete' onclick='return confirm(Are you sure??)'>";
  ?>
-<a href="course.php?slid=<?php echo $row[courseid]; ?>&view=delete" onclick="return confirm('Are you sure??')">
+
  <?php
  echo "<img src='images/delete.png' width='32' height='32' /></a></td>";
 	}

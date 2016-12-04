@@ -301,7 +301,7 @@ include("modal.php");
 ?>
 	  <form name="form2" method="post" action="schedulerview.php">
 
-		<p>
+		<!--<p>
 		  <label for="select">Professor</label>
 	   <?php
 		  $rescourse = mysqli_query($con,"SELECT *  FROM lectures");
@@ -318,8 +318,8 @@ include("modal.php");
 			</select>
 		  </p>
 		<p>
-		  <input type="submit" name="submitresult" id="submitresult" value="Submit">
-		  <input type="hidden" id="lec_id" name="lec_id" value=<?php echo $_POST['select']; ?> >
+		  <input type="submit" name="submitresult" id="submitresult" value="Submit">-->
+		  <input type="hidden" id="lec_id" name="lec_id" value=<?php echo $_POST['select']; ?> 
 		  </p>
 	</form>
 
@@ -337,7 +337,7 @@ include("modal.php");
             	{
             ?>
 					<p>
-                       	<img src="/fullcalendar/assets/img/trashcan.png" id="trash" alt="">
+                       	<img src="fullcalendar/assets/img/trashcan.png" id="trash" alt="">
                  	</p>
             <?php
                  }
@@ -345,14 +345,16 @@ include("modal.php");
 		</div>
 
 		<div id='calendar'></div>
-
+	<? include("adminmenu.php"); ?>
 		<div style='clear:both'></div>
 
 		<xspan class="tt">x</xspan>
 
 	</div>
+
 </body>
 </html>
 
 <?
+
 include("footer.php"); ?>

@@ -7,7 +7,7 @@ include("modal.php");
 $abc = 100;
 if($_GET["view"] == "delete")
 {
-mysqli_query("DELETE FROM administrator WHERE adminid ='$_GET[slid]'");
+mysqli_query($con, "DELETE FROM administrator WHERE adminid ='$_GET[slid]'");
 }
 if(isset($_SESSION["userid"]))
 {
@@ -19,7 +19,7 @@ if(isset($_SESSION["userid"]))
 		$_GET[first] =0;
 	$_GET[last] = 10;
 	}
-$result = mysqli_query("SELECT * FROM administrator LIMIT $_GET[first] , $_GET[last]");
+$result = mysqli_query($con, "SELECT * FROM administrator LIMIT $_GET[first] , $_GET[last]");
 
 ?>
 <section id="page">
@@ -53,9 +53,10 @@ $result = mysqli_query("SELECT * FROM administrator LIMIT $_GET[first] , $_GET[l
    echo "<td>&nbsp;" . $row['address'] . "</td>";
    echo "<td>&nbsp;" . $row['contactno'] . "</td>";
    echo "<td>&nbsp; <a href='viewrecords.php?slid=$row[adminid]&view=administrator'><img src='images/view.png' width='32' height='32' /></a>
- <a href='addadmin.php?slid=$row[adminid]&view=administrator'>  <img src='images/edit.png' width='32' height='32' /></a>";
+ <a href='addadmin.php?slid=$row[adminid]&view=administrator'>  <img src='images/edit.png' width='32' height='32' /></a>
+  <a href='adminview.php?slid=$row[adminid]&view=delete'><img src='images/delete.png' width='32' height='32' onclick='return confirm(Are you sure??)' /></a> ";
  ?>
- <a href='adminview.php?slid=$row[adminid]&view=delete'><img src='images/delete.png' width='32' height='32' onclick="return confirm('Are you sure??')" /></a> </td>
+</td>
 <?php
 echo "</tr>&nbsp;";
 	$i++;

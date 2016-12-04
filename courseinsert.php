@@ -14,9 +14,9 @@ $sql="INSERT INTO course (courseid, coursename, comment, coursekey)
 VALUES
 ('$_POST[courseid]','$_POST[coursename]','$_POST[comment]','$_POST[coursekey]')";
 
-if (!mysqli_query($sql,$con))
+if (!mysqli_query($con,$sql))
   {
-  die('Error: ' . mysqli_error());
+  die('Error: ' . mysqli_error($con));
   }
   else
   {
@@ -36,7 +36,7 @@ if($_GET["view"] == "course")
 $result = mysqli_query($con,"SELECT * FROM course where courseid='$_GET[slid]'");
  while($row1 = mysqli_fetch_array($result))
   {
-	$totid = $row1["courseid"];
+	$course_id = $row1["courseid"];
 	$coursename = $row1["coursename"];
 	$comment = $row1["comment"];
 	$coursekey = $row1["coursekey"];
@@ -51,11 +51,11 @@ $result = mysqli_query($con,"SELECT * FROM course");
 <form name="form1" method="post" action="" id="formID">
   <p>
     <label for="textfield">Course ID</label>
-    <input type="text" name="courseid" id="textfield" class="validate[required] text-input" value="<?php echo $totid; ?>" readonly >
+    <input type="text" name="courseid" id="textfield" class="validate[required] text-input" value="<?php echo $course_id; ?>"  >
   </p>
   <p>
     <label for="textfield2">Course Name</label>
-    <input type="text" name="coursename" id="textfield2" class="validate[required,custom[onlyLetterSp]] text-input" value="<?php echo $coursename; ?>">
+    <input type="text" name="coursename" id="textfield2" class="validate[required] text-input" value="<?php echo $coursename; ?>">
   </p>
   <p>
     <label for="textarea">Comment</label>
@@ -63,7 +63,7 @@ $result = mysqli_query($con,"SELECT * FROM course");
   </p>
   <p>
     <label for="coursekey">Course Key</label>
-    <input type="text" name="coursekey" id="coursekey" class="validate[required,custom[onlyLetterSp]] text-input" value="<?php echo $coursekey; ?>">
+    <input type="text" name="coursekey" id="coursekey" class="validate[required] text-input" value="<?php echo $coursekey; ?>">
   </p>
   <p>
     <input type="submit" name="button" id="button" value="Submit">
@@ -74,4 +74,5 @@ $result = mysqli_query($con,"SELECT * FROM course");
 </form>
   </p>
 </form>
+<div align="left">&nbsp;  <a href='course.php'><< Back </a></div>
 <p>&nbsp;</p>

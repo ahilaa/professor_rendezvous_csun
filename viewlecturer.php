@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+//Override default zone
+date_default_timezone_set('Etc/UTC');
 include("header.php");
 include("conection.php"); ?>
 <section id="page">
@@ -10,7 +11,7 @@ include("conection.php"); ?>
 
 <article class="post">
   <header class="postheader">
-    <h2>Search by Lecturers</h2>
+    <h2>Pull Calendar Feed by Professor</h2>
   </header>
   <form name="form2" method="post" action="">
 
@@ -44,8 +45,8 @@ if(isset($_POST[submitresult]))
         $current_time = date("Y-m-d\TH:i:sP", time());
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_PROXY, '10.40.32.20');
-        curl_setopt($ch, CURLOPT_PROXYPORT, '80');
+        //curl_setopt($ch, CURLOPT_PROXY, '10.40.32.20');
+        //curl_setopt($ch, CURLOPT_PROXYPORT, '80');
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,  0);

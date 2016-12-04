@@ -1,6 +1,9 @@
 <?php
+session_start();
 include("validation.php");
 include("header.php"); 
+include("conection.php");
+include("modal.php");
 ?>
 <section id="page">
 <header id="pageheader" class="normalheader">
@@ -18,11 +21,10 @@ include("header.php");
   <?php
   if(isset($_POST["name"]))
   {
-  include("conection.php");
 $sql="INSERT INTO contact (name, emailid, contactno, subject, message) VALUES ('$_POST[name]','$_POST[email]','$_POST[contact]','$_POST[subject]','$_POST[message]')";
-if (!mysqli_query($sql,$con))
+if (!mysqli_query($con,$sql))
   {
-  die('Error in mysql: ' . mysqli_error());
+  die('Error in mysql: ' . mysqli_error($con));
   }
   else
   {
@@ -72,7 +74,9 @@ echo "Mail sent Successfully...";
 </form>
 <?php
   }
+ 
   ?>
+
 <div class="clear"></div>
 </section>
 </article>
@@ -80,6 +84,7 @@ echo "Mail sent Successfully...";
 
 </section>
 <section id="sidebar">
+<?php    include("adminmenu.php"); ?>
 <h2>Contact Us</h2>
 <ul>
 	<li>Please enter Name, Mail Id, contact Number, Subject, Message.</li>
@@ -92,4 +97,6 @@ echo "Mail sent Successfully...";
 <div class="clear"></div>
 </section>
 </div>
-<?php include("footer.php"); ?>
+<?php
+
+include("footer.php"); ?>

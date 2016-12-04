@@ -53,9 +53,10 @@ $result = mysqli_query($con,"SELECT * FROM lectures LIMIT $_GET[first] , $_GET[l
 	   echo "<td>&nbsp;" . $row['contactno'] . "</td>";
 	   echo "<td>&nbsp;" . $row['cal_feed_url'] . "</td>";
 	   echo "<td>&nbsp;<a href='viewrecords.php?slid=$row[lecid]&view=lectures'><img src='images/view.png' width='32' height='32' /></a>
-<a href='lecture.php?slid=$row[lecid]&view=lectures'>  <img src='images/edit.png' width='32' height='32' /></a>";
+<a href='lecture.php?slid=$row[lecid]&view=lectures'>  <img src='images/edit.png' width='32' height='32' /></a>
+<a href='lectureview.php?slid=$row[lecid]&view=delete'><img src='images/delete.png' width='32' height='32'  onclick='return confirm('Are you sure??')'/></a>";
 ?>
-<a href='lectureview.php?slid=<?php echo $row[lecid]; ?>&view=delete'><img src='images/delete.png' width='32' height='32'  onclick="return confirm('Are you sure??')"/></a></td>
+</td>
   <?php
   echo "</tr>&nbsp;";
   $i++;
