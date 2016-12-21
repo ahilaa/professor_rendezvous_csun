@@ -7,8 +7,8 @@ if (!$con)
 
 mysql_select_db("studentinfo", $con);*/
 
-$user = 'root';
-$password = 'root';
+$user = '*****';
+$password = '*******';
 $db = 'studentinfo';
 $host = 'localhost';
 $port = 3306;
